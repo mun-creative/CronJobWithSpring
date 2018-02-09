@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+    
+    
+    
+    <bean id="jobA"  class="com.medha.jobs.JobA"></bean>
+    <bean id="jobB"  class="com.medha.jobs.JobB"></bean>
+    <bean id="jobC" class="com.medha.jobs.JobC"></bean>
+    
+    <bean id="JobA"  class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass"  value="com.medha.jobs.JobA"></property>
+    </bean>
+    
+    <bean id="JobB" class="org.springframework.scheduling.quartz.JobDetailBean">
+        
+        <property name="JobClass" value="com.medha.jobs.JobB"></property>
+    </bean>
+    
+    <bean id="JobC"  class="org.springframework.scheduling.quartz.JobDetailBean">
+        
+        <property name="JobClass"  value="com.medha.jobs.JobC"></property>
+    </bean>
+    
+    <bean id="cronTriggerJobA"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="JobA"></property>
+        <property name="cronExpression" value="0/5 * * * * ?" />
+    </bean>
+    
+    <bean id="cronTriggerJobB" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="JobDetail" ref="JobB"></property>
+        <property name="cronExpression" value="0/5 * * * * ?" />
+    </bean>
+    <bean id="cronTriggerJobC"  class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="JobDetail" ref="JobC"></property>
+        <property name="cronExpression" value="0/5 * * * * ?" />
+    </bean>
+    
+    
+    <bean class="org.springframework.schedulling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            
+            <list>
+                <ref bean="cronTriggerJobA"></ref>
+                <ref bean="cronTriggerJobB"></ref>
+                <ref bean="cronTriggerJobC"></ref>
+            </list>
+        </property>
+    </bean>
+    </beans>

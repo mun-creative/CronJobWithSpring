@@ -11,16 +11,16 @@
     <bean id="jobB"  class="com.medha.jobs.JobB"></bean>
     <bean id="jobC" class="com.medha.jobs.JobC"></bean>
     
-    <bean id="JobA"  class="org.springframework.scheduling.quartz.JobDetailBean">
+    <bean id="JobA"  class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
         <property name="jobClass"  value="com.medha.jobs.JobA"></property>
     </bean>
     
-    <bean id="JobB" class="org.springframework.scheduling.quartz.JobDetailBean">
+    <bean id="JobB" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
         
         <property name="JobClass" value="com.medha.jobs.JobB"></property>
     </bean>
     
-    <bean id="JobC"  class="org.springframework.scheduling.quartz.JobDetailBean">
+    <bean id="JobC"  class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
         
         <property name="JobClass"  value="com.medha.jobs.JobC"></property>
     </bean>
@@ -30,17 +30,17 @@
         <property name="cronExpression" value="0/5 * * * * ?" />
     </bean>
     
-    <bean id="cronTriggerJobB" class="org.springframework.scheduling.quartz.CronTriggerBean">
+    <bean id="cronTriggerJobB" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="JobDetail" ref="JobB"></property>
         <property name="cronExpression" value="0/5 * * * * ?" />
     </bean>
-    <bean id="cronTriggerJobC"  class="org.springframework.scheduling.quartz.CronTriggerBean">
+    <bean id="cronTriggerJobC"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="JobDetail" ref="JobC"></property>
         <property name="cronExpression" value="0/5 * * * * ?" />
     </bean>
     
     
-    <bean class="org.springframework.schedulling.quartz.SchedulerFactoryBean">
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             
             <list>
